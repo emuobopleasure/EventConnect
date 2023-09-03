@@ -3,7 +3,11 @@ import { useLoaderData } from 'react-router-dom';
 import EventsList from '../components/EventsList';
 
 function EventsPage() {
-  const events = useLoaderData()
+  const data = useLoaderData()
+  // if (data.isError) {
+  //   return data.message
+  // }
+  const events = data.events
 
   return (
     <>
@@ -15,11 +19,11 @@ function EventsPage() {
 export default EventsPage;
 
 export const loader = async () => {
-  const response = await fetch('http://localhost:8080/events')
-  if (!response) {
-    ///
+  const response = await fetch('http://localhost:8080/eventsfdd')
+  if (!response.ok) {
+    throw { message: 'Could not fetch events'}
+    // return { isError: true, message: 'Could not fetch events'}
   } else {
-    const resData = await response.json()
-    return resData.events
+    return response
   }
 }
