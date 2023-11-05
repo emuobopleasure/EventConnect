@@ -3,7 +3,7 @@ import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home";
 import EventsPage, { loader as eventsLoader } from "./pages/Events";
 import NewEventPage from "./pages/NewEvent";
-import EventDetailPage, { loader as  eventsDetaileLoader} from "./pages/EventDetail";
+import EventDetailPage, { loader as eventsDetailLoader } from "./pages/EventDetail";
 import EditEventPage from "./pages/EditEvent";
 import EventRootLayout from "./pages/EventRoot";
 import ErrorPage from "./pages/Error";
@@ -13,17 +13,40 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/', element: <RootLayout />,
-      errorElement: <ErrorPage/>,
+      errorElement: <ErrorPage />,
       children: [
 
         { index: true, element: <HomePage /> },
-        { path: 'events', element: <EventRootLayout/>, children: [
-          { index: true, element: <EventsPage />, loader: eventsLoader },
-          { path: ':eventId', element: <EventDetailPage />, loader: eventsDetaileLoader  },
-          { path: 'new', element: <NewEventPage /> },
-          { path: 'eventId/edit', element: <EditEventPage /> }
-
-        ]}
+        {
+          path: 'events', 
+          element: <EventRootLayout />, 
+          children: [
+            { 
+              index: true, 
+              element: <EventsPage />, 
+              loader: eventsLoader 
+            },
+            {
+              path: ':eventId',
+              id: 'event-detail',
+              loader: eventsDetailLoader,
+              children: [
+                {
+                  index: true,
+                  element: <EventDetailPage/>
+                },
+                {
+                  path: 'edit',
+                  element: <EditEventPage/>
+                },
+              ]
+            },
+            {
+              path: 'new',
+              element: <NewEventPage/>
+            }
+          ]
+        }
       ]
     },
   ])
