@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home";
 import EventsPage, { loader as eventsLoader } from "./pages/Events";
-import NewEventPage from "./pages/NewEvent";
+import NewEventPage, { action as newEventAction } from "./pages/NewEvent";
 import EventDetailPage, { loader as eventsDetailLoader } from "./pages/EventDetail";
 import EditEventPage from "./pages/EditEvent";
 import EventRootLayout from "./pages/EventRoot";
@@ -43,7 +43,8 @@ function App() {
             },
             {
               path: 'new',
-              element: <NewEventPage/>
+              element: <NewEventPage/>,
+              action: newEventAction
             }
           ]
         }
