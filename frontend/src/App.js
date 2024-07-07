@@ -3,7 +3,7 @@ import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home";
 import EventsPage, { loader as eventsLoader } from "./pages/Events";
 import NewEventPage, { action as newEventAction } from "./pages/NewEvent";
-import EventDetailPage, { loader as eventsDetailLoader } from "./pages/EventDetail";
+import EventDetailPage, { loader as eventsDetailLoader, action as deleteEventAction } from "./pages/EventDetail";
 import EditEventPage from "./pages/EditEvent";
 import EventRootLayout from "./pages/EventRoot";
 import ErrorPage from "./pages/Error";
@@ -33,7 +33,8 @@ function App() {
               children: [
                 {
                   index: true,
-                  element: <EventDetailPage/>
+                  element: <EventDetailPage/>,
+                  action: deleteEventAction
                 },
                 {
                   path: 'edit',
