@@ -10,7 +10,7 @@ const ErrorPage = () => {
 
     if (error.status === 500) {
         message = error.data.message
-        console.log('message', message)
+        // console.log('message', message)
     }
     if (error.status === 404) {
         title = 'Not found!'
